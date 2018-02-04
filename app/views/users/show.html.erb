@@ -12,6 +12,12 @@
 <h2 align="center">
   <%= @user.username%>'s Articles
 </h2>
+<div align="center">
+  <small> 
+    To add a profile picture, please go to: <a href="https://en.gravatar.com/" target="_blank">gravatar.com</a> and create an account and then upload a photo there using your ruby blog email. <br/>
+   Once this is completed, it will automatically add the photo to your profile. <br/>
+  </small>
+</div>
 <div class="center">
   <%= will_paginate @user_articles %>
 </div>

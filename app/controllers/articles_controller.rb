@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     respond_to do |format|
       if @article.save
         flash[:success] = "Article was successfully created."
@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
     @article.destroy
     respond_to do |format|
       flash[:danger] = "Article was successfully destroyed."
-      format.html { redirect_to articles_url }
+      format.html { redirect_to user_path(current_user) }
       format.json { head :no_content }
     end
   end
