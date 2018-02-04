@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :comments
 
-  resources :users
+  resources :users, except: [:new]
 
   resources :articles
 
@@ -32,13 +32,13 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
+  get 'signup', to: 'users#new'
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
+  #post 'users', to: 'users#create' (did resources :users instead)
   # Example resource route with more complex sub-resources:
   #   resources :products do
   #     resources :comments
