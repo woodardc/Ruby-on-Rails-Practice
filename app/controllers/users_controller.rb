@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update]
+  before_action :require_admin, only: [:destroy]
   # GET /users
   # GET /users.json
   def index
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         flash[:success] = "Welcome to the blog #{@user.username}!"
         format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
@@ -59,9 +61,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user = set_user
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to articles_path, notice: 'User was successfully destroyed.' }
+      flash[:danger] = "The user and all of its articles have been successfully deleted."
+      format.html { redirect_to users_path}
       format.json { head :no_content }
     end
   end
@@ -83,5 +87,11 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     end
-        
+  
+    def require_admin
+      if logged_in? and !current_user.admin?
+        flash[:danger] = "Only admin users can perform that action"
+        redirect_to root_path
+      end
+    end
 end
