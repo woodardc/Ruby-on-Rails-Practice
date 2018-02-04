@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    @article.user = User.first
     respond_to do |format|
       if @article.save
         flash[:success] = "Article was successfully created."
