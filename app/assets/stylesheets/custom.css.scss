@@ -1,7 +1,11 @@
-$navbar-default-bg: #a0c1f7;
+$navbar-default-bg: #5f7eaf;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.nav.navbar-nav li a{
+  color:#000;
+}
 
 #logo{ 
 
@@ -55,4 +59,9 @@ footer ul li {
   float: left;
   margin-left: 15px;
   
+}
+
+.btn.btn-primary.btn-lg {
+  color: #eaeaea;
+  background-color: #5f7eaf;
 }
