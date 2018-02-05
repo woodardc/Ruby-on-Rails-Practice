@@ -1,6 +1,6 @@
 require 'active_support/core_ext'
 class CategoriesController < ApplicationController
-  
+  before_action :require_admin, except: [:index, :show]
   def setup
     @category = Category.new(name: "turtles")
   end
@@ -33,6 +33,13 @@ class CategoriesController < ApplicationController
   private
   def category_params
     params.require(:category).permit(:name)
+  end
+  
+  def require_admin
+    if !logged_in? || (logged_in? and !current_user.admin?)
+      flash[:danger] = "Admin Only"
+      redirect_to categories_path
+    end
   end
   
 end
