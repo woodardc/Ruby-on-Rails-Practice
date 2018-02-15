@@ -16,6 +16,7 @@
       <ul class="nav navbar-nav">
         <li> <%= link_to "Articles", articles_path %></li>
         <li><%= link_to "Users", users_path %></li>
+        <li><%= link_to "Categories", categories_path %> </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -36,6 +37,9 @@
             <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to "New Article", new_article_path %></li>
+            <% if current_user.admin? %>
+              <li> <%= link_to "Create Category", new_category_path %> </li>
+            <% end %>
           </ul>
         </li>
         <% else %>

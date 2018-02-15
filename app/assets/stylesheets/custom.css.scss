@@ -3,6 +3,21 @@ $navbar-default-bg: #5f7eaf;
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+.badge {
+  
+  color: #FFF;
+  background-color: #498fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+  
+}
+
+.input_checkbox input {
+  width: auto !important;
+  
+}
+
 .nav.navbar-nav li a{
   color:#000;
 }
